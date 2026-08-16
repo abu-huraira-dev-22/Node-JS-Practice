@@ -4,9 +4,20 @@ const app = express()
 
 app.use(express.json())
 
+app.use((req,res,next)=>{
+  console.log('Middleware is working')
+  req.requestTime = new Date()
+  next()
+})
+
 app.get('/users',(req,res)=>{
     res.json({
         status: true,
+        data:[
+            {name: "Huraira"},
+            {name: "Abdul"},
+        ],
+        time: req.requestTime
     })
 })
 
