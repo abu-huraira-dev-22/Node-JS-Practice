@@ -1,6 +1,9 @@
 const express = require("express");
 
 const app = express()
+const dotenv = require('dotenv').config
+
+dotenv()
 
 app.use(express.json())
 
@@ -51,6 +54,6 @@ app.delete('/users',(req,res)=>{
 })
 
 
-app.listen(5000, ()=>{
-    console.log('Server is running')
+app.listen(process.env.PORT, ()=>{
+    console.log('Server is running on the port of ' + process.env.PORT)
 })
