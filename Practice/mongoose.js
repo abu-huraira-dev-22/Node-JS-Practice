@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+app.use(express.json())
 const mongoose = require('mongoose');
 const Users = require('./models/UserSchema');
 
@@ -17,19 +18,31 @@ async function main() {
   console.log('Database is connected')
 }
 
-app.post('/addUsers', async(req,res)=>{
-    const myUser={
-        name:"Huraira"
-    }
+app.post('/user', async(req,res)=>{
+
     try {
-        const small = await Users.create(myUser);
+        const small = await Users.create(req.body);
         res.send({
             status: true,
             message:"User Added Successfully"
         })
     } catch (error) {
-        console.log(error, "==>> error")
+        console.log(error.message, "==>> error")
+        res.send({
+            status:false,
+            message: error.message
+        })
     }
+})
+
+app.get('/users',async(req,res)=>{
+    const users = await Users.find()
+
+    res.json({
+        status: true,
+        message:"All Users Fetched",
+        data: users
+    })
 })
 
 

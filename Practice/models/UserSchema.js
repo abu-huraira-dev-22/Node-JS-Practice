@@ -5,6 +5,15 @@ const UserSchema = new mongoose.Schema({
   name:{
     type:String,
     required:true
+  },
+  profession:{
+    type:String,
+    // required:true
+  },
+  age:{
+    type:Number,
+    required: true,
+    min:18
   }
   
 });
