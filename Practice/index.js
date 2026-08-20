@@ -54,6 +54,6 @@ app.delete('/users',(req,res)=>{
 })
 
 
-app.listen(process.env.PORT, ()=>{
-    console.log('Server is running on the port of ' + process.env.PORT)
-})
+// app.listen(process.env.PORT, ()=>{
+//     console.log('Server is running on the port of ' + process.env.PORT)
+// })

@@ -1,9 +1,11 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const connectDB = require('./helperFunctions/db')
+const authRouter = require('./Routes/AuthRoutes')
 dotenv.config()
 
 const app= express()
+app.use(express.json())
 
 connectDB()
 
@@ -19,7 +21,7 @@ app.get('/health',(req,res)=>{
 // AUTHENTICATION ROUTES
 // SignUp // AddUser
 
-// app.use('/api/auth',authenticationRoute)
+app.use('/api/auth',authRouter)
 
 // USERS ROUTES
 // UpdateUser
