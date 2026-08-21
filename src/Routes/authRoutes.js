@@ -3,18 +3,13 @@ const {
   successResponse,
   errorResponse,
 } = require("../helperFunctions/responseHandler");
+const Users = require("../models/UserSchema");
+const signupController = require("../controllers/authControllers");
 
 const authRouter = express.Router();
 
 // Signup / AddUser
-authRouter.post("/signup", (req, res) => {
-  const { email, userName, password } = req.body;
-  console.log(email, userName, password, "==>> details");
-  if (!email || !userName || !password) {
-    return errorResponse(400, false, "All Fields are required", [], res);
-  }
-  return successResponse(200, true, "User Signedup Successfully", [], res);
-});
+authRouter.post("/signup", signupController);
 
 // Login
 authRouter.post("/login", (req, res) => {
